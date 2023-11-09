@@ -22,35 +22,21 @@ export class GridWorld {
      */
     public setRobotAndExecuteInstructions(robotInitialPosition: string, robotInstructions: string): boolean {
 
-        const [ initialX, initialY, initialOrientation ] = robotInitialPosition.split(' ');
+        const [initialOrientation, initialX, initialY ] = robotInitialPosition.split(' ');
+       
         const coordinates: Coordinates = new Coordinates(Number(initialX), Number(initialY));
+        
         const position: Position = new Position(coordinates, orientations[initialOrientation]);
-
+        
         const robot: Robot = new Robot(position);
 
         // Execute robot instructions one by one until all instructions have been executed or robot has fallen.
-        for(let i = 0; !robot.isLost && i < robotInstructions.length; i++) {
+        for(let i = 0;  i < robotInstructions.length; i++) {
             const instruction = robotInstructions[i];
-
-            if(!robot.isLost) {
-
-                // If instruction tells robot to step forward, check if it is going to fall or not.
-                if(instruction == 'M' && this.isRobotGoingToFall(robot.position)) {
-                    
-                    const currentRobotCoordinates: Coordinates = robot.position.coordinates;
-
-                    // Ignore instruction if there is already robot scent in current position.
-                    if(!this._world.positionHasRobotScent(currentRobotCoordinates)) {
-                        this.setRobotAsLost(robot);
-                    }
-                    
-                } else {
-                    robot.move(instructions[instruction]);
-                }
-            }
+            robot.move(instructions[instruction]);
         }
 
-        return robot.isLost;
+        return false;
     }
 
     public showInfo(): void {
@@ -93,14 +79,6 @@ export class GridWorld {
 
 
         return isGoingToFall;
-    }
-
-    private setRobotAsLost(robot: Robot): void {
-        robot.isLost = true;
-        this._world.incrementLostRobots();
-
-        const coordinatesWithNewRobotScent: Coordinates = robot.position.coordinates;
-        this._world.setNewPositionWithRobotScent(coordinatesWithNewRobotScent);
     }
 
 }

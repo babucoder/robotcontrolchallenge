@@ -25,5 +25,5 @@ export const orientations: orientationsDict = {
 export const instructions: instructionsDict = {
     ['L']: new RemoteController(new InstructionTurnLeft()),
     ['R']: new RemoteController(new InstructionTurnRight()),
-    ['F']: new RemoteController(new InstructionMoveForward()),
+    ['M']: new RemoteController(new InstructionMoveForward()),
 }

@@ -13,9 +13,8 @@ export const preprocessInputAndSendInformation = (gridWorld: GridWorld, inputInf
         const xCoordinate = worldWidth;
         const yCoordinate = worldHeight;
 
-        if(Number(xCoordinate) >= 0 && Number(xCoordinate) < worldWidth && Number(yCoordinate) >= 0 && Number(yCoordinate) < worldHeight) {
+        if(Number(xCoordinate) >= 0  && Number(yCoordinate) >= 0) {    
             gridWorld.setRobotAndExecuteInstructions(inputInfo[0], inputInfo[1]);
-
         } else {
             console.error("FORMAT ERROR: Robot coordinates out of bounds.");
         }

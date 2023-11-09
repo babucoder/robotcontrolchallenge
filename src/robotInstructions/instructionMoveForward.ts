@@ -38,6 +38,5 @@ export class InstructionMoveForward implements Instruction {
                 console.error('invalid orientation');
         }
 
-        robot.incrementExploredSurface(1);
     }
 }

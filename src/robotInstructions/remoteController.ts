@@ -18,6 +18,7 @@ export class RemoteController {
 
     public executeInstruction(robotToMove: Robot): void {        
         this.instruction.executeInstruction(robotToMove);
+        console.log(robotToMove)
     }
     
 }

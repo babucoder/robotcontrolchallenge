@@ -2,15 +2,11 @@ import { Robot } from "./robot";
 import { Coordinates } from "./robotPosition/coordinates";
 
 export class World {
-
   
     private _width: number;
 
 
     private _height: number;
-
-   
-    private _lostRobots: number;
 
    
     private _positionsWithRobotScent: Coordinates[];
@@ -22,7 +18,6 @@ export class World {
         this._width = width;
         this._height = height;
         this._robots = [];
-        this._lostRobots = 0;
         this._positionsWithRobotScent = [];
 
     }
@@ -48,18 +43,12 @@ export class World {
         this._robots = value;
     }
 
-    public get lostRobots(): number {
-        return this._lostRobots;
-    }
 
     public get positionsWithRobotScent(): Coordinates[] {
         return this._positionsWithRobotScent;
     }
 
-    public incrementLostRobots(): void {
-        this._lostRobots++;
-    }
-
+  
     public setNewPositionWithRobotScent(coordinates: Coordinates): void {
         this._positionsWithRobotScent.push(coordinates);
     }
